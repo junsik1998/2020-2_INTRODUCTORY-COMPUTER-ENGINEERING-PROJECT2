@@ -3,22 +3,26 @@ import os
 
 from menu import showMenu
 from search import foodInfo, searchProductName
-
+from diary import writeDiary
 
 #해당 날짜에 있는 식품의 섭취 영양소 리스트 반환 [], user=string형 date=int형
 def Receive_nutrient_list(user,date):
     nutrient_list=[0,0,0,0,0,0,0,0,0]
     diary = open('./Users/'+user+'/diary/'+str(date)+'.txt','r')
     foods=diary.readlines()
-    
     for food in foods:
         food = food[:-1]
         #food의 nutrient 받아오기
         food_nutrient=foodInfo(food)
         for i in range(0,9):
-            if food_nutrient[i+2]=='':
-                continue
-            nutrient_list[i] = nutrient_list[i] + float(food_nutrient[i+2])
+            if(len(food_nutrient)==12):
+                if(food_nutrient[i+3]==''):
+                    continue
+                nutrient_list[i] = nutrient_list[i] + float(food_nutrient[i+3])
+            else:
+                if(food_nutrient[i+2]==''):
+                    continue
+                nutrient_list[i] = nutrient_list[i] + float(food_nutrient[i+2])
     return nutrient_list
 
 
@@ -156,12 +160,12 @@ def today_nutrient(user):
         while(select!='1' or select!='2'):
             select=input('>')
             if(select=='1'):
-                #식품 섭취 일지 작성으로
-                x=1
+                break
             elif(select=='2'):
                 NutrientAnalysis(user)
             else:
                 print('잘못 입력하였습니다.')
+        writeDiary(user)
 
 #입력받은 날짜가 8자리의 숫자일 경우 이 8자리 숫자가 날짜 형식인지 구분해준다. date=string형
 def date_check(date):
@@ -215,7 +219,7 @@ def range_nutrient(user):
         date=input('>')
         date=date.replace(' ','')
         if(date=='0'):  #입력받은 문자가 '0'일 경우 부프롬프트3.1:영양정보분석으로 이동
-              NutrientAnalysis(user)
+              return
         check_comma=date.split(',') #문자열에 ','가 있는지 확인
         for c in check_comma:
             check_tilde=c.split('~')    #문자열에 '~'가 있는지 확인
@@ -244,7 +248,9 @@ def range_nutrient(user):
                                 
             else:
                 check=0
-        if(check==0):print('\n옳바른 입력 형식이 아닙니다.')
+        if(check==0):
+            print('\n옳바른 입력 형식이 아닙니다.')
+            date_list.clear()
         else:
             break
     print()   
@@ -263,21 +269,21 @@ def range_nutrient(user):
     while(check!='0'):
         print('잘못입력하였습니다.')
         check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
-    
-    NutrientAnalysis(user)
+    date_list.clear()
+    return
 
 
 #부 프롬프트3.1: 영양정보 분석
 def NutrientAnalysis(user):
-    print()
-    select=showMenu('영양정보 분석')
-
-    if select==0:
-        diary_analysis(user)
-    elif select==1:
-        today_nutrient(user)
-    elif select == 2:
-        range_nutrient(user)
+    while(True):
+        print()
+        select=showMenu('영양정보 분석')
+        if select==0:
+            break
+        elif select==1:
+            today_nutrient(user)
+        elif select == 2:
+            range_nutrient(user)
 
 #부 프롬프트3.2 유해 식품 검사
 def harmfulFood(user):
@@ -327,16 +333,19 @@ def harmfulFood(user):
             print('회수 정보:',harmful_foods[int(select)-1][2])
             print('이미지 url:',harmful_foods[int(select)-1][3])
             print()
+        harmful_foods.clear()
     
 
 
 #부 프롬프트3: 일지 분석 명령
 def diary_analysis(user):
-    select=showMenu('일지 분석')
-    if(select==1):
-        NutrientAnalysis(user)
-    if(select==2):
-        harmfulFood(user)
-    if(select==0):
-        return
+    while(True):
+        print()
+        select=showMenu('일지 분석')
+        if(select==1):
+            NutrientAnalysis(user)
+        if(select==2):
+            harmfulFood(user)
+        if(select==0):
+            break
 
