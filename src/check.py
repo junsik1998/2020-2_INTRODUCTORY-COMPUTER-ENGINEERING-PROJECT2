@@ -77,7 +77,7 @@ def checkPW(PW):
         return False
     elif containOthers(PW):
         print("비밀번호에 영문자와 숫자외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.") # 추가
-        return True
+        return False
     else:
         return True
 
