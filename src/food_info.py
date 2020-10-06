@@ -66,3 +66,6 @@ try:
 except requests.exceptions.ConnectionError as msg:
     print("API 호출 error 발생으로 유해식품정보 업데이트를 실패하였습니다.\n")
     print("통신 오류입니다. 네트워크를 확인해주세요.")
+except json.decoder.JSONDecodeError as msg:
+    print("API 호출 error 발생으로 유해식품정보 업데이트를 실패하였습니다.\n")
+    print(msg)
