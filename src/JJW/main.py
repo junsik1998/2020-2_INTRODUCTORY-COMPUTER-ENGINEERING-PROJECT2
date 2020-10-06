@@ -5,7 +5,7 @@ from login import *
 from menu import *
 from check import *
 from diary import *
-    
+from loadDiary import loadDiaryPrompt
 user = None
 task = None
 loadDiaryTask = None
@@ -35,18 +35,7 @@ while user!=None and task!="0":
         YYYYMMDD = loadDiary(user)
         if YYYYMMDD != None:
             # 일지 불러오기 프롬프트
-            loadDiaryTask = showMenu("일지 불러오기 메뉴")
-            if loadDiaryTask =='1':
-                editDiary(user, YYYYMMDD)
-                pass
-            elif loadDiaryTask == '2':
-                delDiary(user,YYYYMMDD)
-                pass
-            elif loadDiaryTask == '0':
-                continue
-            else:
-                print("존재하지 않는 메뉴를 선택했습니다. 다시 입력해주세요.")
-
+            loadDiaryPrompt(user, YYYYMMDD)
     elif task == '3':
         pass
     elif task == '4':
