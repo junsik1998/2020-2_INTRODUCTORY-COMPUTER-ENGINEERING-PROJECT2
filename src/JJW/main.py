@@ -13,8 +13,7 @@ loadDiaryTask = None
 os.system("clear")
 
 while user==None:
-    showMenu(startMenu)
-    task = input("번호를 선택해주세요.")
+    task = showMenu("시작 메뉴")
 
     if task=='1':
         signUp()
@@ -28,18 +27,15 @@ while user==None:
 
 while user!=None and task!="0":
     YYYYMMDD = None
+    task = showMenu("메인 메뉴")
     
-    showMenu(mainMenu)
-    task=input("메뉴를 선택해주세요")
-
     if task == '1':
         writeDiary(user)
     elif task == "2":
         YYYYMMDD = loadDiary(user)
         if YYYYMMDD != None:
             # 일지 불러오기 프롬프트
-            showMenu(loadDairyMenu)
-            loadDiaryTask = input()
+            loadDiaryTask = showMenu("일지 불러오기 메뉴")
             if loadDiaryTask =='1':
                 editDiary(user, YYYYMMDD)
                 pass
