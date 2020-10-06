@@ -252,6 +252,12 @@ def range_nutrient():
         else:
             print(str(day),"에 해당하는 일지가 없습니다.\n")           
 
+    check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
+    while(check!='0'):
+        print('잘못입력하였습니다.')
+        check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
+    
+    NutrientAnalysis()
 
 
 #부 프롬프트3.1: 영양정보 분석
@@ -273,12 +279,6 @@ def NutrientAnalysis():
         today_nutrient()
     else:
         range_nutrient()
-    
-    check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
-    while(check!='0'):
-        print('잘못입력하였습니다.')
-        check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
-    return NutrientAnalysis()
 
 #부 프롬프트3.2 유해 식품 검사
 def harmfulFood(user):
