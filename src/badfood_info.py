@@ -33,9 +33,24 @@ try:
             f.close()
             f = open(badfood_info_path+badfood_info_name,'a')
             for i in food_info:
-                data = i['PRDTNM']+","+i['RTRVLPRVNS']+","+i['BSSHNM']+","+\
-                i['ADDR']+","+i['PRCSCITYPOINT_TELNO']+","+i['BRCDNO']+","+"\n"
-                f.write(data)
+                data = i['PRDTNM']
+                data = data.replace(","," ")
+                f.write(data+",")
+                data = i['RTRVLPRVNS']
+                data = data.replace(","," ")
+                f.write(data+",")
+                data = i['BSSHNM']
+                data = data.replace(","," ")
+                f.write(data+",")
+                data = i['ADDR']
+                data = data.replace(","," ")
+                f.write(data+",")
+                data = i['PRCSCITYPOINT_TELNO']
+                data = data.replace(","," ")
+                f.write(data+",")
+                data = i['BRCDNO']
+                data = data.replace(","," ")
+                f.write(data+"\n")
             f.close()
             print("업데이트를 완료했습니다")
         else:
