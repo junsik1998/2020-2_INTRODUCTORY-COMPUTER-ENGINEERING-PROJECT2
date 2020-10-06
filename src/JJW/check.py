@@ -170,7 +170,7 @@ def checkYYYYMM(YYYYMM):
     elif int(YYYYMM) > today:
         print("현재 년월보다 빠른 일지는 존재하지 않습니다. 다시 입력해주세요.")
         return False
-    elif not (int(year) >=1998 and int(year)<=2020):
+    elif not (int(year) >=1970 and int(year)<2070):
         print("해당 연도는 지원하지 않습니다. 다시 입력해주세요.")
         return False
     elif not (int(month)>=1 and int(month)<=12):
