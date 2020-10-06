@@ -25,10 +25,10 @@ def writeDiary(user):
     foodFile = foodDir+str(today)+".txt"
 
     # 식품명 입력
-    if existFile(foodFile) == True:
-        f = open(foodFile, "a")
+    if existFile(diaryFile) == True:
+        f = open(diaryFile, "a")
     else:
-        f = open(foodFile, "w")
+        f = open(diaryFile, "w")
 
     print("오늘 섭취한 식품들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
     while True: 
@@ -42,10 +42,10 @@ def writeDiary(user):
     print("식품명 입력이 완료되었습니다.")
 
     # 제품명 입력
-    if existFile(diaryFile) == True:
-        f = open(diaryFile, "a")
+    if existFile(foodFile) == True:
+        f = open(foodFile, "a")
     else:
-        f = open(diaryFile, "w")
+        f = open(foodFile, "w")
 
     print("오늘 섭취한 제품명들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
     while True: 
