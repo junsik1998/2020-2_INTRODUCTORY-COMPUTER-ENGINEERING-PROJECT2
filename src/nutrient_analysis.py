@@ -4,6 +4,10 @@ import urllib.request
 import cv2
 import time
 
+menuList = {
+    "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"]
+    "영양정보 분석":["일지 분석으로 이동","오늘 일지 분석", "날짜 지정해서 분석"]
+}
 #해당 날짜에 있는 식품의 섭취 영양소 리스트 반환 [], user=string형 date=int형
 def Receive_nutrient_list(user,date):
     nutrient_list=[0,0,0,0,0,0,0,0,0]
@@ -265,11 +269,7 @@ def NutrientAnalysis():
     print()
     select='3'
     while(select!='0' and select!='1' and select!='2'):
-        print("[영양 정보 분석 메뉴]")
-        print("0.일지 분석으로 이동")
-        print("1.오늘 일지 분석")
-        print("2.날짜 지정해서 분석")
-        select=input(">")
+        select=showMenu('영양정보 분석')
         if(select!='0' and select!='1' and select!='2'):
             print('\n잘못 입력하였습니다.\n')
 
@@ -335,12 +335,7 @@ def harmfulFood(user):
 def diary_analysis():
     select=3
     while(select!='0'):
-        
-        print("[일지 분석]")
-        print("0. 메인 메뉴로 이동")
-        print("1. 영양 정보 분석")
-        print("2. 유해 식품 검사")
-        select=input(">")
+        select=showMenu('일지 분석')
         if(select=='1'):
             NutrientAnalysis()
         elif(select=='2'):
