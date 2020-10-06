@@ -2,7 +2,6 @@ import os
 from check import *
 
 def login():
-    os.system("clear")
     id = input("ID : ")
 
     if existID(id):

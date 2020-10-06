@@ -1,17 +1,14 @@
 from datetime import datetime
 import os
-import urllib.request
-import cv2
-import time
 
-menuList = {
-    "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"],
-    "영양정보 분석":["일지 분석으로 이동","오늘 일지 분석", "날짜 지정해서 분석"]
-}
+from menu import showMenu
+from search import foodInfo, searchProductName
+
+
 #해당 날짜에 있는 식품의 섭취 영양소 리스트 반환 [], user=string형 date=int형
 def Receive_nutrient_list(user,date):
     nutrient_list=[0,0,0,0,0,0,0,0,0]
-    diary = open('./Users/'+user+'/diary/'+str(date)+'.txt','r', encoding='UTF8')
+    diary = open('./Users/'+user+'/diary/'+str(date)+'.txt','r')
     foods=diary.readlines()
     
     for food in foods:
@@ -38,7 +35,7 @@ def ingest_low(nutname):
 #영양 분석 함수
 #user는 string형 date는 int형 list는 0:열량 1:탄수화물 2:단백질 3.지방 4.당류 5.나트륨 6.콜레스테롤 7.포화지방산 8.트렌스지방
 def Nutrient(user,date, list):
-    info_file=open('./Users/'+user+'/info.txt','r',encoding='UTF8')
+    info_file=open('./Users/'+user+'/info.txt','r')
     info=info_file.readlines()
     
     height=int(info[2][:-1])
@@ -273,17 +270,13 @@ def range_nutrient(user):
 #부 프롬프트3.1: 영양정보 분석
 def NutrientAnalysis(user):
     print()
-    select='3'
-    while(select!='0' and select!='1' and select!='2'):
-        select=showMenu('영양정보 분석')
-        if(select!='0' and select!='1' and select!='2'):
-            print('\n잘못 입력하였습니다.\n')
+    select=showMenu('영양정보 분석')
 
-    if(select=='0'):
+    if select==0:
         diary_analysis(user)
-    elif(select=='1'):
+    elif select==1:
         today_nutrient(user)
-    else:
+    elif select == 2:
         range_nutrient(user)
 
 #부 프롬프트3.2 유해 식품 검사
@@ -339,16 +332,11 @@ def harmfulFood(user):
 
 #부 프롬프트3: 일지 분석 명령
 def diary_analysis(user):
-    select=3
-    while(select!='0'):
-        select=showMenu('일지 분석')
-        if(select=='1'):
-            NutrientAnalysis(user)
-        elif(select=='2'):
-            harmfulFood(user)
-        else:
-            print('잘못 입력하였습니다.\n')
-    if(select=='0'):
-        #메인 메뉴로
-        x=1
+    select=showMenu('일지 분석')
+    if(select==1):
+        NutrientAnalysis(user)
+    if(select==2):
+        harmfulFood(user)
+    if(select==0):
+        return
 

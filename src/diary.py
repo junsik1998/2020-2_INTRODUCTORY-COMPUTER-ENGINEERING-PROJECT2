@@ -1,6 +1,9 @@
 import os
 from datetime import date
 from check import *
+from input import inputFoodName
+from search import searchFood
+
 
 def showDiaryList(user, YYYYMM):
     directory ="./Users/"+user+"/diary/"
@@ -32,12 +35,13 @@ def writeDiary(user):
 
     print("오늘 섭취한 식품들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
     while True: 
-        diary = input()
+        diary = inputFoodName()
         if diary == '':
             break
         else:
-            # 여기서 준식이 함수 거침
-            f.write(diary+"\n")
+            diary = searchFood(diary)
+            if diary != "-1":
+                f.write(diary+"\n")
     f.close()
     print("식품명 입력이 완료되었습니다.")
 
