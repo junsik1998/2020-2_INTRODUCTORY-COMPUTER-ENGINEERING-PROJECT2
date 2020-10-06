@@ -1,6 +1,7 @@
 import requests
+import os
 
-food_info_path = "C:/Users/USER/Desktop/food_tank/"
+food_info_path = os.getcwd()
 food_info_name = "식품영양정보.txt"
 
 def food_info(num_start,num_fin):
