@@ -12,11 +12,36 @@ def food_info(num_start,num_fin):
 
     f = open(food_info_path+food_info_name,'a')
     for i in food_info:
-        data = i['NUM']+","+i['DESC_KOR']+","+i['SERVING_SIZE']+","+\
-        i['NUTR_CONT1']+","+i['NUTR_CONT2']+","+i['NUTR_CONT3']+","+\
-        i['NUTR_CONT4']+","+i['NUTR_CONT5']+","+i['NUTR_CONT6']+","+\
-        i['NUTR_CONT7']+","+i['NUTR_CONT8']+"\n"
-        f.write(data)
+        data = i['NUM']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['SERVING_SIZE']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT1']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT2']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT3']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT4']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT5']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT6']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT7']
+        data = data.replace(","," ")
+        f.write(data+",")
+        data = i['NUTR_CONT8']
+        data = data.replace(","," ")
+        f.write(data+"\n")
     f.close()
 
 def make_db(total):
