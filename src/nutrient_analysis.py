@@ -18,9 +18,10 @@ def Receive_nutrient_list(user,date):
         food = food[:-1]
         #food의 nutrient 받아오기
         food_nutrient=foodInfo(food)
-        for i in range(1,9):
-            if food_nutrient[i]=='':continue
-            nutrient_list[i] = nutrient_list[i] + food_nutrient[i]
+        for i in range(0,9):
+            if food_nutrient[i+2]=='':
+                continue
+            nutrient_list[i] = nutrient_list[i] + float(food_nutrient[i+2])
     return nutrient_list
 
 
@@ -35,7 +36,7 @@ def ingest_low(nutname):
 
 
 #영양 분석 함수
-#user는 string형 date는 int형 list는 0:식품이름 1:열량 2:탄수화물 3:단백질 4.지방 5.당류 6.나트륨 7.콜레스테롤 8.포화지방산
+#user는 string형 date는 int형 list는 0:열량 1:탄수화물 2:단백질 3.지방 4.당류 5.나트륨 6.콜레스테롤 7.포화지방산 8.트렌스지방
 def Nutrient(user,date, list):
     info_file=open('./Users/'+user+'/info.txt','r',encoding='UTF8')
     info=info_file.readlines()
@@ -52,21 +53,21 @@ def Nutrient(user,date, list):
 
     print('['+str(date),'영양 정보 분석]')
     print('섭취 영양소')
-    print('열량:',str(list[1])+"kcal 탄수화물:",str(list[2])+"g 단백질:", str(list[3])+"g 지방:",str(list[4])+"g 당류:", str(list[5])+"g \n나트륨:", str(list[6])+"mg 콜레스테롤:", str(list[7])+"mg 포화지방산", str(list[8])+"mg")
-    print('표준 섭취 열량: '+str(stdcalorie)+"kcal\t사용자가 섭취한 열량: "+str(list[1])+"kcal")
+    print('열량:',str(list[0])+"kcal 탄수화물:",str(list[1])+"g 단백질:", str(list[2])+"g 지방:",str(list[3])+"g 당류:", str(list[4])+"g \n나트륨:", str(list[5])+"mg 콜레스테롤:", str(list[6])+"mg 포화지방산:", str(list[7])+"mg 트렌스지방:",str(list[8]))
+    print('표준 섭취 열량: '+str(stdcalorie)+"kcal\t사용자가 섭취한 열량: "+str(list[0])+"kcal")
 
     #열량
-    if(stdcalorie<list[1]):
+    if(stdcalorie<list[0]):
         print("열량 섭취량이 많습니다. 섭취량을 줄이세요.")
-    elif(stdcalorie>list[1]):
+    elif(stdcalorie>list[0]):
         print("열량 섭취량이 적습니다. 섭취량을 늘리세요.")
         
     #탄수화물
     std_calbo_low=stdcalorie*0.55
     std_calbo_high=stdcalorie*0.65
-    if(std_calbo_high<list[2]):
+    if(std_calbo_high<list[1]):
         ingest_high('탄수화물')
-    elif(std_calbo_low<list[2] and list[2]<=std_calbo_high):
+    elif(std_calbo_low<list[1] and list[1]<=std_calbo_high):
         ingest_middle('탄수화물')
     else:
         ingest_low('탄수화물')
@@ -74,9 +75,9 @@ def Nutrient(user,date, list):
     #단백질
     std_protein_low=stdcalorie*0.3
     std_protein_high=stdcalorie*0.35
-    if(std_protein_high<list[3]):
+    if(std_protein_high<list[2]):
         ingest_high('단백질')
-    elif(std_protein_low<list[3] and list[3]<=std_protein_high):
+    elif(std_protein_low<list[2] and list[2]<=std_protein_high):
         ingest_middle('단백질')
     else:
         ingest_low('단백질')
@@ -85,55 +86,60 @@ def Nutrient(user,date, list):
     if(BMI<=23):
         std_fat_low=stdcalorie*0.15
         std_fat_high=stdcalorie*0.30
-        if(std_fat_high<list[4]):
+        if(std_fat_high<list[3]):
             ingest_high('지방')
-        elif(std_fat_low<list[4] and std_fat_high>=list[4]):
+        elif(std_fat_low<list[3] and std_fat_high>=list[3]):
             ingest_middle('지방')
         else:
             ingest_low('지방')
     else:
         std_fat_low=stdcalorie*0.15
         std_fat_high=stdcalorie*0.25
-        if(std_fat_high<list[4]):
+        if(std_fat_high<list[3]):
             ingest_high('지방')
-        elif(std_fat_low<list[4] and std_fat_high>=list[4]):
+        elif(std_fat_low<list[3] and std_fat_high>=list[3]):
             ingest_middle('지방')
         else:
             ingest_low('지방')
     #당류
     if(age>13):
-        if(list[5]>50):
+        if(list[4]>50):
             ingest_high('당류')
         else:
             ingest_middle('당류')
     else:
-        if(list[5]>30):
+        if(list[4]>30):
             ingest_high('당류')
         else:
             ingest_middle('당류')
             
     #나트륨
-    if(list[6]>5000):
+    if(list[5]>5000):
         ingest_high('나트륨')
     else:
         ingest_middle('나트륨')
     #콜레스테롤
     if(sex=='남'):
-        if(list[7]>300):
+        if(list[6]>300):
             ingest_high('콜레스테롤')
         else:
             ingest_middle('콜레스테롤')
     else:
-        if(list[7]>219):
+        if(list[6]>219):
             ingest_high('콜레스테롤')
         else:
             ingest_middle('콜레스테롤')
     #포화지방산
-    if(list[8]>15):
+    if(list[7]>15):
         ingest_high('포화지방산')
     else:
         ingest_middle('포화지방산')
-    print('\n')
+    #트렌스지방
+    if(list[8]>2):
+        ingest_high('트렌스지방')
+    else:
+        ingest_middle('트렌스지방')
+    print('')
 
 #부프롬프트3.1.1: 오늘 일지 분석
 def today_nutrient(user):
