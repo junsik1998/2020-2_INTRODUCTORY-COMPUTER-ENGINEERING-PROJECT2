@@ -55,7 +55,7 @@ try:
             print("업데이트를 완료했습니다")
         else:
             print("변경된 정보가 없기 때문에 업데이트를 하지 않겠습니다.")
-except requests.exceptions.ConnectionError as msg:
+except requests.exceptions.ConnectionError:
     print("API 호출 error 발생으로 유해식품정보 업데이트를 실패하였습니다.\n")
     print("통신 오류입니다. 네트워크를 확인해주세요. ")
 except json.decoder.JSONDecodeError as msg:
