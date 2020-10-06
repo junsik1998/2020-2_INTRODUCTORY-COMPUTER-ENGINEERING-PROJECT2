@@ -5,7 +5,7 @@ import cv2
 import time
 
 menuList = {
-    "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"]
+    "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"],
     "영양정보 분석":["일지 분석으로 이동","오늘 일지 분석", "날짜 지정해서 분석"]
 }
 #해당 날짜에 있는 식품의 섭취 영양소 리스트 반환 [], user=string형 date=int형
@@ -136,7 +136,7 @@ def Nutrient(user,date, list):
     print('\n')
 
 #부프롬프트3.1.1: 오늘 일지 분석
-def today_nutrient():
+def today_nutrient(user):
     print()
     today=datetime.today()
     today=int(str(today)[:10].replace('-',''))
@@ -156,7 +156,7 @@ def today_nutrient():
                 #식품 섭취 일지 작성으로
                 x=1
             elif(select=='2'):
-                NutrientAnalysis()
+                NutrientAnalysis(user)
             else:
                 print('잘못 입력하였습니다.')
 
@@ -196,7 +196,7 @@ def isthere(user, date):
         return False
      
 #부프롬프트3.1.2: 날짜 지정해서 분석
-def range_nutrient():
+def range_nutrient(user):
     print('\n영양 정보 분석 날짜 입력')
     print('-날짜의 기본 형식은 YYYYMMDD인 8자리 정수로 한다.')
     print('날짜 범의로 입력은 "A~B"로 한다.(A와 B는 YYYYMMDD형식의 8자리 정수, A<=B)')
@@ -212,7 +212,7 @@ def range_nutrient():
         date=input('>')
         date=date.replace(' ','')
         if(date=='0'):  #입력받은 문자가 '0'일 경우 부프롬프트3.1:영양정보분석으로 이동
-              NutrientAnalysis()
+              NutrientAnalysis(user)
         check_comma=date.split(',') #문자열에 ','가 있는지 확인
         for c in check_comma:
             check_tilde=c.split('~')    #문자열에 '~'가 있는지 확인
@@ -261,11 +261,11 @@ def range_nutrient():
         print('잘못입력하였습니다.')
         check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
     
-    NutrientAnalysis()
+    NutrientAnalysis(user)
 
 
 #부 프롬프트3.1: 영양정보 분석
-def NutrientAnalysis():
+def NutrientAnalysis(user):
     print()
     select='3'
     while(select!='0' and select!='1' and select!='2'):
@@ -274,11 +274,11 @@ def NutrientAnalysis():
             print('\n잘못 입력하였습니다.\n')
 
     if(select=='0'):
-        diary_analysis()
+        diary_analysis(user)
     elif(select=='1'):
-        today_nutrient()
+        today_nutrient(user)
     else:
-        range_nutrient()
+        range_nutrient(user)
 
 #부 프롬프트3.2 유해 식품 검사
 def harmfulFood(user):
@@ -332,12 +332,12 @@ def harmfulFood(user):
 
 
 #부 프롬프트3: 일지 분석 명령
-def diary_analysis():
+def diary_analysis(user):
     select=3
     while(select!='0'):
         select=showMenu('일지 분석')
         if(select=='1'):
-            NutrientAnalysis()
+            NutrientAnalysis(user)
         elif(select=='2'):
             harmfulFood(user)
         else:
@@ -346,10 +346,3 @@ def diary_analysis():
         #메인 메뉴로
         x=1
 
-
-
-
-
-    
-if __name__=="__main__":
-    diary_analysis()
