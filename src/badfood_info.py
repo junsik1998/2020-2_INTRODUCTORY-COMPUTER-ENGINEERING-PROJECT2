@@ -1,7 +1,7 @@
 import requests
 import os
 
-badfood_info_path = "C:/Users/USER/Desktop/food_tank/"
+badfood_info_path = os.getcwd()
 badfood_info_name = "유해식품정보.txt"
 
 try:
