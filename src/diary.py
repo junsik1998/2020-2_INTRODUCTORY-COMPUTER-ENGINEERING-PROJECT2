@@ -47,6 +47,7 @@ def writeDiary(user):
 
     # 제품명 입력
     if existFile(productFile) == True:
+        productList = loadProductList(user, today)
         f = open(productFile, "a", encoding='utf-8')
     else:
         f = open(productFile, "w", encoding='utf-8')
@@ -57,8 +58,11 @@ def writeDiary(user):
         if product == '':
             break
         else:
-            # 중복되는지 확인
-            f.write(product+"\n")
+            if product in productList:
+                print("제품명은 동일 일에 중복으로 입력할 수 없습니다.")
+            else:
+                productList.append(product)
+                f.write(product+"\n")
     f.close()
     print("제품명 입력이 완료되었습니다.")
 
@@ -98,3 +102,13 @@ def loadDiaryList(user, YYYYMMDD):
     for line in lines:
         foodList.append(line.replace('\n', ''))
     return foodList
+
+def loadProductList(user, YYYYMMDD):
+    productFile = "./Users/"+user+"/product/"+YYYYMMDD+".txt"
+    productList = list()
+    f = open(productFile, 'r', encoding='utf-8')
+    lines = f.readlines()
+    f.close()
+    for line in lines:
+        productList.append(line.replace('\n', ''))
+    return productList
