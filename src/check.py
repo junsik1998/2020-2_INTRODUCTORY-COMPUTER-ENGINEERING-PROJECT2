@@ -115,7 +115,7 @@ def checkHeight(height):
         return False
     else:
         if not (int(height)<250 and int(height)>=1):
-            print("키는 1이상 250미만의 정수만 입력가능합니다. 다시 입력해주세요.")
+            print("키는 1이상 250미만의 정수만 입력 가능합니다. 다시 입력해주세요.")
             return False
         else:
             return True
@@ -127,7 +127,7 @@ def checkWeight(weight):
         return False
     else:
         if not (int(weight)<200 and int(weight)>=1):
-            print("몸무게는 1이상 200미만의 정수만 입력가능합니다. 다시 입력해주세요.")
+            print("몸무게는 1이상 200미만의 정수만 입력 가능합니다. 다시 입력해주세요.")
             return False
         else :
             return True
@@ -167,14 +167,14 @@ def checkYYYYMM(YYYYMM):
     elif res == False:
         print("숫자 이외의 문자는 입력할 수 없습니다. 다시 입력해주세요.")
         return False
-    elif int(YYYYMM) > today:
-        print("현재 년월보다 빠른 일지는 존재하지 않습니다. 다시 입력해주세요.")
-        return False
     elif not (int(year) >=1970 and int(year)<2070):
         print("해당 연도는 지원하지 않습니다. 다시 입력해주세요.")
         return False
     elif not (int(month)>=1 and int(month)<=12):
         print("해당 월은 지원하지 않습니다. 다시 입력해주세요.")
+        return False
+    elif int(YYYYMM) > today:
+        print("현재 년/월보다 빠른 일지는 존재하지 않습니다. 다시 입력해주세요.")
         return False
     else:
         return True
@@ -197,7 +197,6 @@ def checkYYYYMMDD(YYYYMMDD):
     if res == False:
         print("연도는 숫자만 입력 가능합니다.")
     else:
-        # 8자리인지 확인해야하나
         year = int(YYYYMMDD[:4])
         month = int(YYYYMMDD[4:6])
         day = int(YYYYMMDD[6:])
