@@ -22,19 +22,19 @@ def login():
 def signUp():
     # ID 입력
     while True:
-        id = input("사용하실 아이디를 입력해주세요 ")
+        id = input("사용하실 아이디를 입력해주세요.\n입력 > ")
         if checkID(id):
             break
 
     # user directory 생성
     directory = "./Users/"+id
     os.makedirs(directory)
-    os.makedirs(directory+"/diary") # 추가
-    os.makedirs(directory+"/product") # 추가
+    os.makedirs(directory+"/diary")
+    os.makedirs(directory+"/product")
 
     # PW 입력
     while True:
-        pw = input("사용하실 비밀번호를 입력해주세요 ")
+        pw = input("사용하실 비밀번호를 입력해주세요\n입력 > ")
         if checkPW(pw):
             break
     
@@ -44,7 +44,7 @@ def signUp():
     f.close()
 
     while True:
-        sex = input("성별 : ")
+        sex = input("성별을 입력해주세요.\n입력 > ")
         if checkSex(sex):
             break
 
@@ -52,19 +52,19 @@ def signUp():
     f.write(converSex(sex)+"\n")
 
     while True:
-        age = input("나이 : ")
+        age = input("나이를 입력해주세요.\n입력 > ")
         if checkAge(age):
             break
     f.write(age+"\n")
 
     while True:
-        height = input("키 : ")
+        height = input("키를 입력해주세요.\n입력 > ")
         if checkHeight(height):
             break
     f.write(height+"\n")
 
     while True:
-        weight = input("몸무게 : ")
+        weight = input("몸무게를 입력해주세요.\n입력 > ")
         if checkWeight(weight):
             break
     f.write(weight)
