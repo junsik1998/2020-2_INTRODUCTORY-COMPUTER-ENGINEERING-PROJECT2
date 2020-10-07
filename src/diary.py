@@ -75,7 +75,6 @@ def loadDiary(user):
                 break
 
     # 날짜 입력받기
-    # 기획서 수정 : 0입력하면 메인으로
     while True:
         showDiaryList(user, YYYYMM)
         DD = input("불러오실 일지의 날짜를 입력해주세요.\n입력 > ")
