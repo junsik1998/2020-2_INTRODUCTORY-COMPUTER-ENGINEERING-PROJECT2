@@ -38,13 +38,13 @@ def checkLen(minLen, maxLen, word):
 
 def checkID(ID):
     if not containNumber(ID):
-        print("아이디에 최소 1개의 숫자가 포함되어야 합니다. 다시 입력해주세요.") # 추가
+        print("아이디에 최소 1개의 숫자가 포함되어야 합니다. 다시 입력해주세요.")
         return False
     elif not containLower(ID):
-        print("아이디에 최소 1개의 영문자(소문자)가 포함되어야 합니다. 다시 입력해주세요.") # 추가
+        print("아이디에 최소 1개의 영문자(소문자)가 포함되어야 합니다. 다시 입력해주세요.")
         return False
     elif containUpper(ID):
-        print("ID에 대문자는 들어갈 수 없습니다. 소문자만 입력해주세요,") # 추가
+        print("아이디에 대문자는 들어갈 수 없습니다. 소문자만 입력해주세요,")
         return False
     elif not checkLen(4, 12, ID):
         if len(ID) < 4:
@@ -53,7 +53,7 @@ def checkID(ID):
             print("아이디가 너무 깁니다. 4~12자 사이의 아이디를 입력해주세요.")
         return False
     elif containOthers(ID):
-        print("아이디에 영문자(소문자)와 숫자외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.") # 추가
+        print("아이디에 영문자(소문자)와 숫자 외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.")
         return False
     else:
         if os.path.isdir("./Users/"+ID):
