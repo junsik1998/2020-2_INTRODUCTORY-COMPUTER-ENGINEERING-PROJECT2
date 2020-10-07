@@ -202,8 +202,8 @@ def checkYYYYMMDD(YYYYMMDD):
         month = int(YYYYMMDD[4:6])
         day = int(YYYYMMDD[6:])
         try:
-            checkDate = datetime(year, month, day)
+            datetime(year, month, day)
             return True
         except:
+            print("해당 날짜는 존재하지 않는 날짜 입니다. 확인 후 다시 입력해주세요.")
             return False
-        
