@@ -165,7 +165,7 @@ def checkYYYYMM(YYYYMM):
         print("입력된 인자의 수가 많습니다. 다시 입력해 주세요.")
         return False
     elif res == False:
-        print("숫자이외의 문자는 입력할 수 없습니다. 다시 입력해주세요.")
+        print("숫자 이외의 문자는 입력할 수 없습니다. 다시 입력해주세요.")
         return False
     elif int(YYYYMM) > today:
         print("현재 년월보다 빠른 일지는 존재하지 않습니다. 다시 입력해주세요.")
@@ -183,7 +183,7 @@ def checkDD(YYYYMM, DD):
     res = justNumber(DD)
     checkValid = None
     if res== False:
-        print("숫자이외의 문자를 입력할 수 없습니다. 다시 입력해주세요.") # 수정
+        print("숫자 이외의 문자를 입력할 수 없습니다. 다시 입력해주세요.")
         return False
     else:
         checkValid = checkYYYYMMDD(YYYYMM+DD)
