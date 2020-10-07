@@ -2,7 +2,7 @@ import os
 from check import *
 
 def login():
-    id = input("아이디 > ")
+    id = input("ID > ")
 
     if existID(id):
         directory = "./Users/"+id
