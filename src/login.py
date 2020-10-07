@@ -30,7 +30,7 @@ def signUp():
     directory = "./Users/"+id
     os.makedirs(directory)
     os.makedirs(directory+"/diary") # 추가
-    os.makedirs(directory+"/food") # 추가
+    os.makedirs(directory+"/product") # 추가
 
     # PW 입력
     while True:
