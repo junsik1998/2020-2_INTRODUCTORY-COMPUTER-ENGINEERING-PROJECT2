@@ -137,7 +137,7 @@ def existID(id):
     if os.path.isdir(directory) == True:
         return True
     else:
-        print("존재하지 않는 아이디입니다. 메인메뉴로 돌아갑니다.") # 수정
+        print("존재하지 않는 아이디입니다. 시작 메뉴로 돌아갑니다.")
         return False
 
 def existFile(filename):
