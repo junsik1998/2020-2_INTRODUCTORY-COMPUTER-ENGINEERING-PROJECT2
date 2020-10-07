@@ -15,6 +15,10 @@ def food_info(num_start,num_fin):
         data = data.replace(",","")
         data = data.replace(" ","")
         f.write(data+",")
+        data = i['DESC_KOR']
+        data = data.replace(",","")
+        data = data.replace(" ","")
+        f.write(data+",")
         data = i['SERVING_SIZE']
         data = data.replace(",","")
         data = data.replace(" ","")
