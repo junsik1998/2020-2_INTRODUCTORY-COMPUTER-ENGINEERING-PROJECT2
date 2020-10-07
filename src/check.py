@@ -205,5 +205,5 @@ def checkYYYYMMDD(YYYYMMDD):
             datetime(year, month, day)
             return True
         except:
-            print("해당 날짜는 존재하지 않는 날짜 입니다. 확인 후 다시 입력해주세요.")
+            print("해당 날짜는 유효하지 않는 날짜 입니다. 확인 후 다시 입력해주세요.")
             return False
