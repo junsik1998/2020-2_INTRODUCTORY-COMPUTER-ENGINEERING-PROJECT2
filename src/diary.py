@@ -23,9 +23,9 @@ def showDiary(user, YYYYMMDD):
 def writeDiary(user):
     today = date.today().strftime('%Y%m%d')
     diaryDir ="./Users/"+user+"/diary/"
-    foodDir ="./Users/"+user+"/food/"
+    productDir ="./Users/"+user+"/product/"
     diaryFile = diaryDir+str(today)+".txt"
-    foodFile = foodDir+str(today)+".txt"
+    productFile = productDir+str(today)+".txt"
 
     # 식품명 입력
     if existFile(diaryFile) == True:
@@ -46,19 +46,19 @@ def writeDiary(user):
     print("식품명 입력이 완료되었습니다.")
 
     # 제품명 입력
-    if existFile(foodFile) == True:
-        f = open(foodFile, "a")
+    if existFile(productFile) == True:
+        f = open(productFile, "a")
     else:
-        f = open(foodFile, "w")
+        f = open(productFile, "w")
 
     print("오늘 섭취한 제품명들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
     while True: 
-        food = input()
-        if food == '':
+        product = input()
+        if product == '':
             break
         else:
             # 중복되는지 확인
-            f.write(food+"\n")
+            f.write(product+"\n")
     f.close()
     print("제품명 입력이 완료되었습니다.")
 
@@ -132,17 +132,6 @@ def editDiary(user, YYYYMMDD):
     for i in foodList:
         f.write(i+'\n')
     f.close()            
-
-
-    # filename = directory+str(date)+".txt"
-    # if existFile(filename) == True:
-    #     f = open(filename, "r")
-    #     test = f.readline()
-    #     print(test.split(','))
-    #     print(type(test))
-    #     f.close()
-    # else:
-    #     print("해당 날짜의 일기가 존재하지 않습니다.")
 
 def delDiary(user, YYYYMMDD):
     diaryFile = "./Users/"+user+"/diary/"+YYYYMMDD+".txt"
