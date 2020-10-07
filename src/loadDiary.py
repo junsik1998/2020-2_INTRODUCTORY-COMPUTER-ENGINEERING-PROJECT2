@@ -2,6 +2,7 @@ from menu import *
 import os
 from diary import loadDiaryList
 import re
+from check import * 
 
 def editDiary(user, YYYYMMDD):
     diaryFile = "./Users/"+user+"/diary/"+YYYYMMDD+".txt"
@@ -16,8 +17,8 @@ def editDiary(user, YYYYMMDD):
 
     while True:
         select = input( "입력 > ")
-        res = re.search('[^0-9]', select) # 숫자 이외의 것들이 있는지 확인
-        if res == None:
+        res = justNumber(select) # 숫자 이외의 것들이 있는지 확인
+        if res == True:
             if int(select)>=0 and int(select)<len(foodList):
                 change = input()
                 if len(change)==0:
