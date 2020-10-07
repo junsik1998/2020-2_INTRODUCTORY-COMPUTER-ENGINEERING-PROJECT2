@@ -10,7 +10,7 @@ def showDiaryList(user, YYYYMM):
 
     for i in os.listdir(directory):
         if i.startswith(YYYYMM):
-            print(i)
+            print(i.replace('.txt',''))
 
 def showDiary(user, YYYYMMDD):
     diaryFile = "./Users/"+user+"/diary/"+YYYYMMDD+".txt"
