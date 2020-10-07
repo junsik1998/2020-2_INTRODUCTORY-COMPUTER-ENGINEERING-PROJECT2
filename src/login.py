@@ -9,7 +9,7 @@ def login():
         f = open(directory+"/password.txt", 'r')
         userPW = f.readline()
 
-        pw = input("패스워드 > ")
+        pw = input("PW > ")
         if userPW == pw:
             print(f"로그인에 성공했습니다.")
             return id
