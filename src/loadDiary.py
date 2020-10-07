@@ -32,7 +32,7 @@ def editDiary(user, YYYYMMDD):
                 print("존재하지 않는 인덱스를 선택했습니다. 다시 입력해주세요.")
         else:
             print("숫자 외에 문자를 입력할 수 없습니다. 다시 입력해주세요.")
-    f = open(diaryFile, 'w')
+    f = open(diaryFile, 'w', encoding='utf-8')
     for i in foodList:
         f.write(i+'\n')
     f.close()            

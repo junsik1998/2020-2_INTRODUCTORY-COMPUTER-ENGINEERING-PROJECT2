@@ -6,7 +6,7 @@ def login():
 
     if existID(id):
         directory = "./Users/"+id
-        f = open(directory+"/password.txt", 'r')
+        f = open(directory+"/password.txt", 'r', encoding='utf-8')
         userPW = f.readline()
 
         pw = input("PW > ")
@@ -39,7 +39,7 @@ def signUp():
             break
     
     # password.txt 생성
-    f = open(directory+"/password.txt", 'w')
+    f = open(directory+"/password.txt", 'w', encoding='utf-8')
     f.write(pw)
     f.close()
 
@@ -48,7 +48,7 @@ def signUp():
         if checkSex(sex):
             break
 
-    f = open(directory+"/info.txt", "w")
+    f = open(directory+"/info.txt", "w", encoding='utf-8')
     f.write(converSex(sex)+"\n")
 
     while True:

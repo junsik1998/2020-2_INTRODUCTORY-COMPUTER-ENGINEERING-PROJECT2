@@ -14,7 +14,7 @@ def showDiaryList(user, YYYYMM):
 
 def showDiary(user, YYYYMMDD):
     diaryFile = "./Users/"+user+"/diary/"+YYYYMMDD+".txt"
-    f = open(diaryFile, 'r')
+    f = open(diaryFile, 'r', encoding='utf-8')
     lines = f.readlines()
     for line in lines:
         print(line.replace('\n',''))
@@ -29,9 +29,9 @@ def writeDiary(user):
 
     # 식품명 입력
     if existFile(diaryFile) == True:
-        f = open(diaryFile, "a")
+        f = open(diaryFile, "a", encoding='utf-8')
     else:
-        f = open(diaryFile, "w")
+        f = open(diaryFile, "w", encoding='utf-8')
 
     print("오늘 섭취한 식품들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
     while True: 
@@ -47,9 +47,9 @@ def writeDiary(user):
 
     # 제품명 입력
     if existFile(productFile) == True:
-        f = open(productFile, "a")
+        f = open(productFile, "a", encoding='utf-8')
     else:
-        f = open(productFile, "w")
+        f = open(productFile, "w", encoding='utf-8')
 
     print("오늘 섭취한 제품명들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
     while True: 
@@ -92,7 +92,7 @@ def loadDiary(user):
 def loadDiaryList(user, YYYYMMDD):
     diaryFile = "./Users/"+user+"/diary/"+YYYYMMDD+".txt"
     foodList = list()
-    f = open(diaryFile, 'r')
+    f = open(diaryFile, 'r', encoding='utf-8')
     lines = f.readlines()
     f.close()
     for line in lines:
