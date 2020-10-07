@@ -20,7 +20,7 @@ product_barcode_index = 1
 
 
 def loadFood():
-    food_file = open("./식품영양정보.txt", "r")
+    food_file = open("./식품영양정보.txt", "r", encoding='cp949')
     lines = food_file.readlines()
     lines = lines[1:]
     for line in lines:
@@ -30,7 +30,7 @@ def loadFood():
 
 
 def loadBadProducts():
-    bad_file = open("./유해식품정보.txt", "r")
+    bad_file = open("./유해식품정보.txt", "r", encoding='cp949')
     lines = bad_file.readlines()
     lines = lines[1:]
     for line in lines:
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     loadBadProducts()
     searchInit(foods, products)
 
-    while user is None:
+    while user==None:
         task = showMenu("시작 메뉴")
         if task == 1:
             signUp()
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         elif task == 0:
             break
 
-    while True:
+    while user!=None:
         menu = showMenu("메인 메뉴")
         if menu == 0:
             print("프로그램을 종료합니다.")
