@@ -2,14 +2,14 @@ import os
 from check import *
 
 def login():
-    id = input("ID : ")
+    id = input("아이디 > ")
 
     if existID(id):
         directory = "./Users/"+id
         f = open(directory+"/password.txt", 'r')
         userPW = f.readline()
 
-        pw = input("패스워드 : ")
+        pw = input("패스워드 > ")
         if userPW == pw:
             print(f"로그인에 성공했습니다.")
             return id
@@ -44,7 +44,7 @@ def signUp():
     f.close()
 
     while True:
-        sex = input("성별을 입력해주세요.\n입력 > ")
+        sex = input("성별 > ")
         if checkSex(sex):
             break
 
@@ -52,19 +52,19 @@ def signUp():
     f.write(converSex(sex)+"\n")
 
     while True:
-        age = input("나이를 입력해주세요.\n입력 > ")
+        age = input("나이 > ")
         if checkAge(age):
             break
     f.write(age+"\n")
 
     while True:
-        height = input("키를 입력해주세요.\n입력 > ")
+        height = input("키 > ")
         if checkHeight(height):
             break
     f.write(height+"\n")
 
     while True:
-        weight = input("몸무게를 입력해주세요.\n입력 > ")
+        weight = input("몸무게 > ")
         if checkWeight(weight):
             break
     f.write(weight)
