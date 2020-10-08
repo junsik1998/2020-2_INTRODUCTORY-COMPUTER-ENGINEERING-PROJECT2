@@ -61,6 +61,7 @@ def writeDiary(user):
             if product in productList:
                 print("제품명은 동일 일에 중복으로 입력할 수 없습니다.")
             else:
+                # 문법 규칙 확인하는 코드? 준식이가 짜놨으면 그걸로
                 productList.append(product)
                 f.write(product+"\n")
     f.close()

@@ -25,7 +25,7 @@ def editDiary(user, YYYYMMDD):
                     del foodList[int(select)]
                     break
                 else:
-                    print(int(select), change)
+                    # 준식이 음식 이름 찾는 함수 들어갈 곳
                     foodList[int(select)] = change
                     break
             else:
