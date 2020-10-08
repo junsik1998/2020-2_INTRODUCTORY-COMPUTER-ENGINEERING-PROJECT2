@@ -50,7 +50,7 @@ def checkID(ID):
         if len(ID) < 4:
             print("아이디가 너무 짧습니다. 최소 4자 이상을 입력해주세요.")
         elif len(ID) > 12:
-            print("아이디가 너무 깁니다. 4~12자 사이의 아이디를 입력해주세요.")
+            print("아이디가 너무 깁니다. 4자 이상 12자 이하의 아이디를 입력해주세요.")
         return False
     elif containOthers(ID):
         print("아이디에 영문자(소문자)와 숫자 외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.")
@@ -73,7 +73,7 @@ def checkPW(PW):
         if len(PW) < 4:
             print("비밀번호가 너무 짧습니다. 최소 4자 이상을 입력해주세요.")
         elif len(PW) > 12:
-            print("비밀번호가 너무 깁니다. 4~12자 사이의 비밀번호를 입력해주세요.")
+            print("비밀번호가 너무 깁니다. 4자 이상 12자 이하의 비밀번호를 입력해주세요.")
         return False
     elif containOthers(PW):
         print("비밀번호에 영문자와 숫자외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.")
@@ -103,7 +103,7 @@ def checkAge(age):
         return False
     else:
         if not (int(age)>=0 and int(age)<=200):
-            print("나이는 0~200사이의 정수만 입력 가능합니다. 다시 입력해주세요")
+            print("나이는 0이상 200이하의 정수만 입력 가능합니다. 다시 입력해주세요")
             return False
         else :
             return True
