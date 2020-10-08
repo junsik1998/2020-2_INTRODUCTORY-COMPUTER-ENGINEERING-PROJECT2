@@ -22,7 +22,7 @@ def login():
 def signUp():
     # ID 입력
     while True:
-        id = input("사용하실 아이디를 입력해주세요.\n입력 > ")
+        id = input("ID > ")
         if checkID(id):
             break
 
@@ -34,7 +34,7 @@ def signUp():
 
     # PW 입력
     while True:
-        pw = input("사용하실 비밀번호를 입력해주세요\n입력 > ")
+        pw = input("PW > ")
         if checkPW(pw):
             break
     
