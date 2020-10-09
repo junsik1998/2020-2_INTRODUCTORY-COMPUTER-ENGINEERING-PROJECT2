@@ -1,8 +1,11 @@
+from input import inputFoodName
 from menu import *
 import os
 from diary import loadDiaryList
 import re
-from check import * 
+from check import *
+from search import searchFood
+
 
 def editDiary(user, YYYYMMDD):
     diaryFile = "./Users/"+user+"/diary/"+YYYYMMDD+".txt"
@@ -20,12 +23,13 @@ def editDiary(user, YYYYMMDD):
         res = justNumber(select) # 숫자 이외의 것들이 있는지 확인
         if res == True:
             if int(select)>=0 and int(select)<len(foodList):
-                change = input()
+                print("식품명을 입력해 주세요.")
+                change = inputFoodName()
                 if len(change)==0:
                     del foodList[int(select)]
                     break
                 else:
-                    # 준식이 음식 이름 찾는 함수 들어갈 곳
+                    change = searchFood(change)
                     foodList[int(select)] = change
                     break
             else:

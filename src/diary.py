@@ -1,7 +1,7 @@
 import os
 from datetime import date
 from check import *
-from input import inputFoodName
+from input import inputFoodName, inputProduct
 from search import searchFood
 
 
@@ -53,15 +53,15 @@ def writeDiary(user):
         f = open(productFile, "w", encoding='utf-8')
 
     print("오늘 섭취한 제품명들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
-    while True: 
-        product = input("입력 > ")
+    while True:
+        # 제품명 문법 규칙 검사하여 입력
+        product = inputProduct()
         if product == '':
             break
         else:
             if product in productList:
                 print("제품명은 동일 일에 중복으로 입력할 수 없습니다.")
             else:
-                # 문법 규칙 확인하는 코드? 준식이가 짜놨으면 그걸로
                 productList.append(product)
                 f.write(product+"\n")
     f.close()

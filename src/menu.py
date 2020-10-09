@@ -10,7 +10,7 @@ menuList = {
 }
 
 def showMenu(menuName):
-    print(menuName)
+    print("[" + menuName + "]")
     for i in range(len(menuList[menuName])):
-        print(i, menuList[menuName][i])
+        print(i, ".", menuList[menuName][i])
     return inputNumber(0, len(menuList[menuName]) - 1)

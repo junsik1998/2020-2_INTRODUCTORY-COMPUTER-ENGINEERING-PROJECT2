@@ -28,6 +28,8 @@ def inputFoodName():
 def inputProduct():
     while True:
         input_text = input('입력 > ')
+        if input_text == '':
+            return input_text
         return_text = ''
         find_text = re.findall(r'[가-힣a-zA-Z\s\?\*]+', input_text)
         korean_english = re.findall(r'[가-힣a-zA-Z]+', input_text)
