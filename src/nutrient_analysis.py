@@ -8,21 +8,17 @@ from diary import writeDiary
 #해당 날짜에 있는 식품의 섭취 영양소 리스트 반환 [], user=string형 date=int형
 def Receive_nutrient_list(user,date):
     nutrient_list=[0,0,0,0,0,0,0,0,0]
-    diary = open('./Users/'+user+'/diary/'+str(date)+'.txt','r')
+    diary = open('./Users/'+user+'/diary/'+str(date)+'.txt','r', encoding='utf-8')
     foods=diary.readlines()
     for food in foods:
         food = food[:-1]
         #food의 nutrient 받아오기
         food_nutrient=foodInfo(food)
         for i in range(0,9):
-            if(len(food_nutrient)==12):
-                if(food_nutrient[i+3]==''):
-                    continue
-                nutrient_list[i] = nutrient_list[i] + float(food_nutrient[i+3])
-            else:
-                if(food_nutrient[i+2]==''):
-                    continue
-                nutrient_list[i] = nutrient_list[i] + float(food_nutrient[i+2])
+            if(food_nutrient[-(i+1)]==''):
+                continue
+            nutrient_list[8-i]=nutrient_list[8-i]+float(food_nutrient[-(i+1)])
+            
     return nutrient_list
 
 
@@ -39,7 +35,7 @@ def ingest_low(nutname):
 #영양 분석 함수
 #user는 string형 date는 int형 list는 0:열량 1:탄수화물 2:단백질 3.지방 4.당류 5.나트륨 6.콜레스테롤 7.포화지방산 8.트렌스지방
 def Nutrient(user,date, list):
-    info_file=open('./Users/'+user+'/info.txt','r')
+    info_file=open('./Users/'+user+'/info.txt','r' , encoding='utf-8')
     info=info_file.readlines()
     
     height=int(info[2][:-1])
@@ -54,8 +50,8 @@ def Nutrient(user,date, list):
 
     print('['+str(date),'영양 정보 분석]')
     print('섭취 영양소')
-    print('열량:',str(list[0])+"kcal 탄수화물:",str(list[1])+"g 단백질:", str(list[2])+"g 지방:",str(list[3])+"g 당류:", str(list[4])+"g \n나트륨:", str(list[5])+"mg 콜레스테롤:", str(list[6])+"mg 포화지방산:", str(list[7])+"mg 트렌스지방:",str(list[8]))
-    print('표준 섭취 열량: '+str(stdcalorie)+"kcal\t사용자가 섭취한 열량: "+str(list[0])+"kcal")
+    print('열량:',str(round(list[0],1))+"kcal 탄수화물:",str(round(list[1],1))+"g 단백질:", str(round(list[2],1))+"g 지방:",str(round(list[3],1))+"g 당류:", str(round(list[4],1))+"g \n나트륨:", str(round(list[5],1))+"mg 콜레스테롤:", str(round(list[6],1))+"mg 포화지방산:", str(round(list[7],1))+"mg 트렌스지방:",str(round(list[8],1)))
+    print('표준 섭취 열량: '+str(stdcalorie)+"kcal\t사용자가 섭취한 열량: "+str(round(list[0]+1))+"kcal")
 
     #열량
     if(stdcalorie<list[0]):
@@ -152,20 +148,23 @@ def today_nutrient(user):
     if(isit):
         nutrient_list=Receive_nutrient_list(user,today)
         Nutrient(user,today,nutrient_list)
+        check=2
+
     else:
         print('['+str(today)+'의 섭취 일지가 없습니다.]')
         print('1.'+str(today),'의 식품 섭취 일지를 작성합니다.')
         print('2. 영양 정보 분석으로 이동합니다.')
         select='3'
         while(select!='1' or select!='2'):
-            select=input('>')
+            select=input('입력>')
             if(select=='1'):
+                writeDiary(user)
                 break
             elif(select=='2'):
-                NutrientAnalysis(user)
+                return
             else:
                 print('잘못 입력하였습니다.')
-        writeDiary(user)
+        
 
 #입력받은 날짜가 8자리의 숫자일 경우 이 8자리 숫자가 날짜 형식인지 구분해준다. date=string형
 def date_check(date):
@@ -216,10 +215,11 @@ def range_nutrient(user):
     #날짜 형식이 맞는지 확인
     while(1):
         check=1         #입력받은 문자가 날짜 형식이 아니면 check=0으로 반환
-        date=input('>')
+        date=input('입력>')
         date=date.replace(' ','')
         if(date=='0'):  #입력받은 문자가 '0'일 경우 부프롬프트3.1:영양정보분석으로 이동
-              return
+            date_list.clear()
+            return
         check_comma=date.split(',') #문자열에 ','가 있는지 확인
         for c in check_comma:
             check_tilde=c.split('~')    #문자열에 '~'가 있는지 확인
@@ -264,11 +264,6 @@ def range_nutrient(user):
             Nutrient(user,day,nutrient_list)
         else:
             print(str(day),"에 해당하는 일지가 없습니다.\n")           
-
-    check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
-    while(check!='0'):
-        print('잘못입력하였습니다.')
-        check=input('0을 입력하면 영양정보 분석으로 이동합니다.\n>')
     date_list.clear()
     return
 
@@ -288,18 +283,18 @@ def NutrientAnalysis(user):
 #부 프롬프트3.2 유해 식품 검사
 def harmfulFood(user):
     print()
-    file_path='./Users/'+user+'/food'
+    file_path='./Users/'+user+'/product'
     file_list= os.listdir(file_path)
     
     harmful_foods=[]
     for date in file_list:
-        f=open('./Users/'+user+'/food/'+date,'r',encoding='UTF8')
+        f=open('./Users/'+user+'/product/'+date,'r', encoding='utf-8')
         foods=f.readlines()
         for food in foods:
             food_list=[]
             food=food.replace('\n','')
             #food를 준식이 함수에 보낸다.return된 리스트를 food_list에 담는다.
-            food_list=searchProductName(user,food)
+            food_list=searchProductName(food)
             if len(food_list)==0:
                 continue
             else:
@@ -312,14 +307,15 @@ def harmfulFood(user):
     select='1'
     if(len(harmful_foods)==0):
         print('섭취한 유해식품이 없습니다.')
+
     else:
         for harm in harmful_foods:
             print(str(index)+'.\t'+harm[1],harm[0])
             index=index+1
-        
+        print()
         while(select!='0'):
             print('(숫자 ‘0’을 입력할 경우 메인 메뉴의 3. 식품 섭취 일지 분석하기로 이동)')
-            select=input('자세히 알고 싶은 유해식품 index\n>')
+            select=input('자세히 알고 싶은 유해식품 index 입력>')
             if(not select.isdigit() or 0>int(select) or int(select)>=index):
                 print('잘못된 형식으로 입력하였습니다.\n')
                 continue
@@ -330,8 +326,9 @@ def harmfulFood(user):
             print()
             print(harmful_foods[int(select)-1][0])
             print('섭취날짜:',(harmful_foods[int(select)-1][1]))
-            print('회수 정보:',harmful_foods[int(select)-1][2])
-            print('이미지 url:',harmful_foods[int(select)-1][3])
+            print('회수 정보:',harmful_foods[int(select)-1][2][1])
+            print('제조 업체 명:',harmful_foods[int(select)-1][2][2])
+            print('업체 주소:',harmful_foods[int(select)-1][2][3])
             print()
         harmful_foods.clear()
     
