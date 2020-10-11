@@ -167,7 +167,7 @@ def checkYYYYMM(YYYYMM):
     elif res == False:
         print("숫자 이외의 문자는 입력할 수 없습니다. 다시 입력해주세요.")
         return False
-    elif not (int(year) >=1970 and int(year)<2070):
+    elif not (int(year) >=1970 and int(year)<=2037):
         print("해당 연도는 지원하지 않습니다. 다시 입력해주세요.")
         return False
     elif not (int(month)>=1 and int(month)<=12):
