@@ -51,7 +51,7 @@ def Nutrient(user,date, list):
     print('['+str(date),'영양 정보 분석]')
     print('섭취 영양소')
     print('열량:',str(round(list[0],1))+"kcal 탄수화물:",str(round(list[1],1))+"g 단백질:", str(round(list[2],1))+"g 지방:",str(round(list[3],1))+"g 당류:", str(round(list[4],1))+"g \n나트륨:", str(round(list[5],1))+"mg 콜레스테롤:", str(round(list[6],1))+"mg 포화지방산:", str(round(list[7],1))+"mg 트렌스지방:",str(round(list[8],1)))
-    print('표준 섭취 열량: '+str(stdcalorie)+"kcal\t사용자가 섭취한 열량: "+str(round(list[0]+1))+"kcal")
+    print('표준 섭취 열량: '+str(round(stdcalorie,1))+"kcal\t사용자가 섭취한 열량: "+str(round(list[0]+1))+"kcal")
 
     #열량
     if(stdcalorie<list[0]):
@@ -186,6 +186,8 @@ def date_check(date):
             if(d>=1 and d<=28):check=1
             else: check=0
     else:
+        check=0
+    if(y>2037 or y<1970):
         check=0
     return check
 
