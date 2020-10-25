@@ -151,19 +151,7 @@ def today_nutrient(user):
         check=2
 
     else:
-        print('['+str(today)+'의 섭취 일지가 없습니다.]')
-        print('1.'+str(today),'의 식품 섭취 일지를 작성합니다.')
-        print('2. 영양 정보 분석으로 이동합니다.')
-        select='3'
-        while(select!='1' or select!='2'):
-            select=input('입력>')
-            if(select=='1'):
-                writeDiary(user)
-                break
-            elif(select=='2'):
-                return
-            else:
-                print('잘못 입력하였습니다.')
+        writeDiary(user)
         
 
 #입력받은 날짜가 8자리의 숫자일 경우 이 8자리 숫자가 날짜 형식인지 구분해준다. date=string형
