@@ -10,7 +10,7 @@ products = []
 product_name_index = 0
 product_reason_index = 1
 product_company_index = 2
-product_tel_index = 3
+product_tel_index = 4
 product_barcode_index = 5
 
 
@@ -66,6 +66,9 @@ def searchFood(input_text):
 
 def searchProductName(input_text):
     product_list = []
+    while input_text == '':
+        print("잘못 입력하셨습니다.")
+        input_text = inputUser("product")
     if input_text.find('?') < 0 and input_text.find('*') < 0:
         for product in products:
             if product[product_name_index] == input_text:
@@ -103,7 +106,7 @@ def showBadProducts(product_list=[], type=""):
             if product[product_company_index]: print("업체명 : " + product[product_company_index])
             if product[product_tel_index]: print("전화번호 : " + product[product_tel_index])
             if product[product_barcode_index]: print("바코드 번호 : " + product[product_barcode_index])
-
+            print("")
     else:
         if type == "product": print("입력하신 제품명에 대한 검색 결과가 없습니다.")
         if type == "barcode": print("입력하신 바코드 번호는 유해식품정보에 등록되어 있지 않은 바코드 번호입니다.")
