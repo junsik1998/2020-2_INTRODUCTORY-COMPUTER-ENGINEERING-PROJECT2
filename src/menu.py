@@ -8,6 +8,11 @@ menuList = {
     "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"],
     "영양정보 분석":["일지 분석으로 이동","오늘 일지 분석", "날짜 지정해서 분석"]
 }
+def showStartMenu(menuName):
+    print("[" + menuName + "]")
+    for i in range(len(menuList[menuName])):
+        print(i, ".", menuList[menuName][i])
+    return input("입력 > ")
 
 def showMenu(menuName):
     print("[" + menuName + "]")
