@@ -45,13 +45,15 @@ if __name__ == "__main__":
     searchInit(foods, products)
 
     while user==None:
-        task = showMenu("시작 메뉴")
+        task = showStartMenu("시작 메뉴")
         if task == 1:
             signUp()
         elif task == 2:
             user = login()
         elif task == 0:
             break
+        else:
+            print("존재하지 않는 메뉴를 선택했습니다. 다시 입력해주세요.")
 
     while user!=None:
         menu = showMenu("메인 메뉴")
