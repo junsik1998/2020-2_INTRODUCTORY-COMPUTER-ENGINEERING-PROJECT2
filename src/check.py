@@ -76,7 +76,7 @@ def checkPW(PW):
             print("비밀번호가 너무 깁니다. 4자 이상 12자 이하의 비밀번호를 입력해주세요.")
         return False
     elif containOthers(PW):
-        print("비밀번호에 영문자와 숫자외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.")
+        print("비밀번호에 영문자와 숫자 외에 다른 문자가 올 수 없습니다. 다시 입력해주세요.")
         return False
     else:
         return True
@@ -98,15 +98,26 @@ def converSex(sex):
 
 def checkAge(age):
     res = justNumber(age)
-    if res == False:
-        print("나이는 숫자만 입력 가능합니다. 다시 입력해주세요.")
-        return False
-    else:
+    try:
+        age = int(age)
         if not (int(age)>=0 and int(age)<=200):
             print("나이는 0이상 200이하의 정수만 입력 가능합니다. 다시 입력해주세요")
             return False
         else :
             return True
+    except ValueError:
+        print("나이는 숫자만 입력 가능합니다. 다시 입력해주세요.")
+        return False
+
+    # if res == False:
+    #     print("나이는 숫자만 입력 가능합니다. 다시 입력해주세요.")
+    #     return False
+    # else:
+    #     if not (int(age)>=0 and int(age)<=200):
+    #         print("나이는 0이상 200이하의 정수만 입력 가능합니다. 다시 입력해주세요")
+    #         return False
+    #     else :
+    #         return True
 
 def checkHeight(height):
     res = justNumber(height)
