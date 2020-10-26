@@ -44,7 +44,7 @@ def checkID(ID):
         print("아이디에 최소 1개의 영문자(소문자)가 포함되어야 합니다. 다시 입력해주세요.")
         return False
     elif containUpper(ID):
-        print("아이디에 대문자는 들어갈 수 없습니다. 소문자만 입력해주세요,")
+        print("아이디에 대문자는 들어갈 수 없습니다. 소문자만 입력해주세요.")
         return False
     elif not checkLen(4, 12, ID):
         if len(ID) < 4:
