@@ -8,7 +8,11 @@ food_name_index = 1
 
 products = []
 product_name_index = 0
-product_barcode_index = 1
+product_reason_index = 1
+product_company_index = 2
+product_tel_index = 3
+product_barcode_index = 5
+
 
 def searchFood(input_text):
     if input_text.find('?') < 0 and input_text.find('*') < 0:
@@ -50,8 +54,10 @@ def searchFood(input_text):
                 index += 1
             select = inputNumber(0, len(food_list))
             if select == 0:
+                print("선택 안함")
                 return "-1"
             else:
+                print(food_list[select - 1])
                 return food_list[select - 1]
         else:
             print("검색된 식품명이 없습니다.")
@@ -88,13 +94,19 @@ def searchBarcode(input_text):
             return product_list
 
 
-def showBadProducts(product_list=[]):
+def showBadProducts(product_list=[], type=""):
     if product_list:
         print("[검색된 유해식품]")
         for product in product_list:
-            print(product[product_name_index] + "  " + product[product_barcode_index])
+            print("제품명 : " + product[product_name_index])
+            print("사유 : " + product[product_reason_index])
+            if product[product_company_index]: print("업체명 : " + product[product_company_index])
+            if product[product_tel_index]: print("전화번호 : " + product[product_tel_index])
+            if product[product_barcode_index]: print("바코드 번호 : " + product[product_barcode_index])
+
     else:
-        print("검색된 유해식품이 없습니다.")
+        if type == "product": print("입력하신 제품명에 대한 검색 결과가 없습니다.")
+        if type == "barcode": print("입력하신 바코드 번호는 유해식품정보에 등록되어 있지 않은 바코드 번호입니다.")
 
 
 def badProductSearch():
@@ -102,9 +114,9 @@ def badProductSearch():
     if menu == 0:
         return
     if menu == 1:
-        showBadProducts(searchProductName(inputUser("product")))
+        showBadProducts(searchProductName(inputUser("product")), "product")
     if menu == 2:
-        showBadProducts(searchBarcode(inputUser("barcode")))
+        showBadProducts(searchBarcode(inputUser("barcode")), "barcode")
 
 
 def foodInfo(foodname):

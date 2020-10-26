@@ -75,9 +75,9 @@ def inputNumber(start, end):
             if start <= number <= end:
                 return number
             else:
-                print(str(start) + "이상 " + str(end) + "이하의 숫자로 입력해 주세요.")
+                print("잘못 입력하셨습니다.")
         except ValueError:
-            print("숫자만 입력 가능합니다.")
+            print("잘못 입력하셨습니다.")
 
 
 def inputUser(type=''):
