@@ -53,7 +53,7 @@ if __name__ == "__main__":
         elif task == "0":
             break
         else:
-            print("존재하지 않는 메뉴를 선택했습니다. 다시 입력해주세요.")
+            print("잘못 입력하셨습니다.")
 
     while user!=None:
         menu = showMenu("메인 메뉴")
