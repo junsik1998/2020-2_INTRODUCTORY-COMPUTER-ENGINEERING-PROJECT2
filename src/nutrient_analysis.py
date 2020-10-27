@@ -1,10 +1,30 @@
 from datetime import datetime
 import os
 
-from menu import showMenu
 from search import foodInfo, searchProductName
 from diary import writeDiary
 
+menuList = {
+   "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"],
+    "영양정보 분석":["일지 분석으로 이동","오늘 일지 분석", "날짜 지정해서 분석"]
+}
+def inputNumber(start, end):
+    while True:
+        try:
+            number = int(input('입력 > '))
+            if start <= number <= end:
+                return number
+            else:
+                print(f"{start}이상 {end}이하의 숫자로 입력해 주세요.")
+        except ValueError:
+            print("숫자만 입력 가능합니다.")
+            
+def showMenu(menuName):
+    print("[" + menuName + "]")
+    for i in range(len(menuList[menuName])):
+        print(i, ".", menuList[menuName][i])
+    return inputNumber(0, len(menuList[menuName]) - 1)
+    
 #해당 날짜에 있는 식품의 섭취 영양소 리스트 반환 [], user=string형 date=int형
 def Receive_nutrient_list(user,date):
     nutrient_list=[0,0,0,0,0,0,0,0,0]
@@ -239,7 +259,7 @@ def range_nutrient(user):
             else:
                 check=0
         if(check==0):
-            print('\n옳바른 입력 형식이 아닙니다.')
+            print('\n올바른 입력 형식이 아닙니다.')
             date_list.clear()
         else:
             break
