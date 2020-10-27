@@ -11,7 +11,6 @@ def login():
 
         pw = input("PW > ")
         if userPW == pw:
-            print(f"로그인에 성공했습니다.")
             return id
         else : 
             print("비밀번호가 다릅니다. 다시 시도해주세요.")
