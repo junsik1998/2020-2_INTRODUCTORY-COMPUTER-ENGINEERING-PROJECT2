@@ -45,7 +45,7 @@ if __name__ == "__main__":
     searchInit(foods, products)
 
     while user==None:
-        task = showStartMenu("시작 메뉴")
+        task = MenuSelect("시작 메뉴")
         if task == "1":
             signUp()
         elif task == "2":
@@ -56,18 +56,20 @@ if __name__ == "__main__":
             print("존재하지 않는 메뉴를 선택했습니다. 다시 입력해주세요.")
 
     while user!=None:
-        menu = showMenu("메인 메뉴")
-        if menu == 0:
+        menu = MenuSelect("메인 메뉴")
+        if menu == "0":
             print("프로그램을 종료합니다.")
             break
-        if menu == 1:
+        elif menu == "1":
             writeDiary(user)
-        if menu == 2:
+        elif menu == "2":
             YYYYMMDD = loadDiary(user)
             if YYYYMMDD is not None:
                 # 일지 불러오기 프롬프트
                 loadDiaryPrompt(user, YYYYMMDD)
-        if menu == 3:
+        elif menu == "3":
             diary_analysis(user)
-        if menu == 4:
+        elif menu == "4":
             badProductSearch()
+        else:
+            print("잘못 입력하셨습니다.")
