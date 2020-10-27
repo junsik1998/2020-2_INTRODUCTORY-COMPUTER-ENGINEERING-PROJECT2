@@ -20,8 +20,7 @@ def editDiary(user, YYYYMMDD):
 
     while True:
         select = input( "입력 > ")
-        res = justNumber(select) # 숫자 이외의 것들이 있는지 확인
-        if res == True:
+        try:
             if int(select)>=0 and int(select)<len(foodList):
                 print("식품명을 입력해 주세요.")
                 change = inputFoodName()
@@ -34,7 +33,7 @@ def editDiary(user, YYYYMMDD):
                     break
             else:
                 print("존재하지 않는 인덱스를 선택했습니다. 다시 입력해주세요.")
-        else:
+        except ValueError:
             print("숫자 외에 문자를 입력할 수 없습니다. 다시 입력해주세요.")
     f = open(diaryFile, 'w', encoding='utf-8')
     for i in foodList:
