@@ -15,14 +15,18 @@ def inputFoodName():
         if input_text == return_text and len(return_text) <= 20 and korean and not two_star:
             return return_text
         elif input_text != return_text:
-            print("입력 가능한 문자는 완전한 한글, 와일드카드 문자(?, *) 입니다.")
+            print("입력하신 값이 문법 형식에 맞지 않습니다.")
+            # print("입력 가능한 문자는 완전한 한글, 와일드카드 문자(?, *) 입니다.")
         else:
+            print("입력하신 값이 문법 형식에 맞지 않습니다.")
+            '''
             if len(return_text) > 20:
                 print("20글자 이하로 입력해주세요.")
             if not korean:
                 print("완전한 한글 문자가 최소 1글자 이상 포함되어야 합니다.")
             if two_star:
                 print("* 기호는 2개 이상 연속하여 입력할 수 없습니다.")
+            '''
 
 
 def inputProduct():
@@ -39,14 +43,18 @@ def inputProduct():
         if input_text == return_text and len(return_text) <= 20 and korean_english and not two_star:
             return return_text
         elif input_text != return_text:
-            print("입력 가능한 문자는 완전한 한글, 영문자, 와일드카드 문자(?, *) 입니다.")
+            print("입력하신 값이 문법 형식에 맞지 않습니다.")
+            # print("입력 가능한 문자는 완전한 한글, 영문자, 와일드카드 문자(?, *) 입니다.")
         else:
+            print("입력하신 값이 문법 형식에 맞지 않습니다.")
+            '''
             if len(return_text) > 20:
                 print("20글자 이하로 입력해주세요.")
             if not korean_english:
                 print("완전한 한글 문자 또는 영문자가 최소 1글자 이상 포함되어야 합니다.")
             if two_star:
                 print("* 기호는 2개 이상 연속하여 입력할 수 없습니다.")
+            '''
 
 
 def inputBarcode():
@@ -62,10 +70,13 @@ def inputBarcode():
             return_text += temp
         if input_text == barcode_text and 5 <= len(return_text) <= 30:
             return return_text
+
         elif len(return_text) < 5 or len(return_text) > 30:
-            print("숫자를 5개 이상 30개 이하로 입력해주세요.")
+            print("입력하신 값이 문법 형식에 맞지 않습니다.")
+            # print("숫자를 5개 이상 30개 이하로 입력해주세요.")
         else:
-            print("입력 가능한 문자는 숫자, 공백, - 기호 입니다.")
+            print("입력하신 값이 문법 형식에 맞지 않습니다.")
+            # print("입력 가능한 문자는 숫자, 공백, - 기호 입니다.")
 
 
 def inputNumber(start, end):
@@ -75,7 +86,8 @@ def inputNumber(start, end):
             if start <= number <= end:
                 return number
             else:
-                print(f"{start}이상 {end}이하의 숫자로 입력해 주세요.")
+                print("잘못 입력하셨습니다.")
+                # print(f"{start}이상 {end}이하의 숫자로 입력해 주세요.")
         except ValueError:
             print("잘못 입력하셨습니다.")
 

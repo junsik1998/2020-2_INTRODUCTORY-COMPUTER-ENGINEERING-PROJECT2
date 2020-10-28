@@ -23,21 +23,25 @@ def searchFood(input_text):
         for food in foods:
             if food[food_name_index] in input_text or input_text in food[food_name_index]:
                 food_list.append(food[food_name_index])
-        if food_list:
-            print("[유사 식품명 중 선택]")
-            print("0. 선택 안함")
-            index = 1
-            for food in food_list:
-                print(str(index) + ". " + food)
-                index += 1
-            select = inputNumber(0, len(food_list))
-            if select == 0:
-                return "-1"
-            else:
-                return food_list[select - 1]
+        # if =food_list:
+        print("다음 항목 중에서 원하는 항목을 선택하세요.")
+        print("0. 선택 안함")
+        index = 1
+        for food in food_list:
+            print(str(index) + ". " + food)
+            index += 1
+        select = inputNumber(0, len(food_list))
+        if select == 0:
+            print("선택 안함")
+            return "-1"
+        else:
+            print(food_list[select - 1])
+            return food_list[select - 1]
+        '''
         else:
             print("검색된 식품명이 없습니다.")
             return "-1"
+        '''
     else:
         food_list = []
         pattern = input_text.replace('?', '.')
@@ -45,29 +49,31 @@ def searchFood(input_text):
         for food in foods:
             if re.fullmatch(pattern, food[food_name_index]):
                 food_list.append(food[food_name_index])
-        if food_list:
-            print("[유사 식품명 중 선택]")
-            print("0. 선택 안함")
-            index = 1
-            for food in food_list:
-                print(str(index) + ". " + food)
-                index += 1
-            select = inputNumber(0, len(food_list))
-            if select == 0:
-                print("선택 안함")
-                return "-1"
-            else:
-                print(food_list[select - 1])
-                return food_list[select - 1]
+        # if =food_list:
+        print("다음 항목 중에서 원하는 항목을 선택하세요.")
+        print("0. 선택 안함")
+        index = 1
+        for food in food_list:
+            print(str(index) + ". " + food)
+            index += 1
+        select = inputNumber(0, len(food_list))
+        if select == 0:
+            print("선택 안함")
+            return "-1"
+        else:
+            print(food_list[select - 1])
+            return food_list[select - 1]
+        '''
         else:
             print("검색된 식품명이 없습니다.")
             return "-1"
+        '''
 
 
 def searchProductName(input_text):
     product_list = []
     while input_text == '':
-        print("잘못 입력하셨습니다.")
+        print("입력하신 값이 문법 형식에 맞지 않습니다.")
         input_text = inputUser("product")
     if input_text.find('?') < 0 and input_text.find('*') < 0:
         for product in products:
@@ -99,7 +105,7 @@ def searchBarcode(input_text):
 
 def showBadProducts(product_list=[], type=""):
     if product_list:
-        print("[검색된 유해식품]")
+        # print("[검색된 유해식품]")
         for product in product_list:
             print("제품명 : " + product[product_name_index])
             print("사유 : " + product[product_reason_index])
@@ -117,8 +123,10 @@ def badProductSearch():
     if menu == 0:
         return
     if menu == 1:
+        print("제품명을 입력해주세요.")
         showBadProducts(searchProductName(inputUser("product")), "product")
     if menu == 2:
+        print("바코드 번호를 입력하세요.")
         showBadProducts(searchBarcode(inputUser("barcode")), "barcode")
 
 
