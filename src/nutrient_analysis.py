@@ -218,7 +218,6 @@ def range_nutrient(user):
     print('날짜 범의로 입력은 "A~B"로 한다.(A와 B는 YYYYMMDD형식의 8자리 정수, A<=B)')
     print('날짜를 여러개 입력받을 때는 ","로 구분한다.')
     print('날짜를 세 개 입력 받는 경우의 예는 "A,B,C"로 한다.( A, B와 C는 YYYYMMDD형식의 8자리 정수)')
-    print('숫자 0을 입력할 경우 영양정보분석으로 이동합니다.')
     
     date_list=[]
     
@@ -227,9 +226,6 @@ def range_nutrient(user):
         check=1         #입력받은 문자가 날짜 형식이 아니면 check=0으로 반환
         date=input('입력>')
         date=date.replace(' ','')
-        if(date=='0'):  #입력받은 문자가 '0'일 경우 부프롬프트3.1:영양정보분석으로 이동
-            date_list.clear()
-            return
         check_comma=date.split(',') #문자열에 ','가 있는지 확인
         for c in check_comma:
             check_tilde=c.split('~')    #문자열에 '~'가 있는지 확인
@@ -315,12 +311,13 @@ def harmfulFood(user):
 
     index=1
     select='1'
+    print("0. 상위 메뉴로 이동")
     if(len(harmful_foods)==0):
         print('섭취한 유해식품이 없습니다.')
 
     else:
         for harm in harmful_foods:
-            print(str(index)+'.\t'+harm[1],harm[0])
+            print(str(index)+'. '+harm[1],harm[0])
             index=index+1
         print()
         while(select!='0'):
