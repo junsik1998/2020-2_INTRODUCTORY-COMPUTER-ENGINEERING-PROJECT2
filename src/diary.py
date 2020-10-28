@@ -82,7 +82,7 @@ def loadDiary(user):
     # 날짜 입력받기
     while True:
         showDiaryList(user, YYYYMM)
-        DD = input("불러오실 일지의 날짜를 입력해주세요.\n입력 > ")
+        DD = input("불러오실 일지의 일을 입력해주세요.\n입력 > ")
         if DD == '0':
             return
         else:
