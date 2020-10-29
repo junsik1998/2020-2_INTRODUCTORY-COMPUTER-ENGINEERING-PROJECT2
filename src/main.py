@@ -5,6 +5,8 @@ from login import *
 from nutrient_analysis import *
 from menu import *
 from search import badProductSearch, searchInit
+from food_info import *
+from badfood_info import *
 
 user = None
 task = None
