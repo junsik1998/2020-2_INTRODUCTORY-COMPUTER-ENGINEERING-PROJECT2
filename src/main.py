@@ -20,7 +20,7 @@ product_barcode_index = 1
 
 
 def loadFood():
-    food_file = open("./식품영양정보.txt", "r", encoding='cp949')
+    food_file = open("./식품영양정보.txt", "r", encoding="utf-8")
     lines = food_file.readlines()
     lines = lines[1:]
     for line in lines:
@@ -30,7 +30,7 @@ def loadFood():
 
 
 def loadBadProducts():
-    bad_file = open("./유해식품정보.txt", "r", encoding='cp949')
+    bad_file = open("./유해식품정보.txt", "r", encoding="utf-8")
     lines = bad_file.readlines()
     lines = lines[1:]
     for line in lines:
@@ -40,6 +40,8 @@ def loadBadProducts():
 
 
 if __name__ == "__main__":
+    mk_food()
+    mk_badfood()
     loadFood()
     loadBadProducts()
     searchInit(foods, products)
