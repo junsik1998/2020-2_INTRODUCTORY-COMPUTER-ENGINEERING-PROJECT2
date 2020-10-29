@@ -45,7 +45,7 @@ def delDiary(user, YYYYMMDD):
     os.remove(diaryFile)
 
 def loadDiaryPrompt(user, YYYYMMDD):
-    loadDiaryTask = showMenu("일지 불러오기 메뉴")
+    loadDiaryTask = loadDairySelect("일지 불러오기 메뉴")
     if loadDiaryTask == 1:
         editDiary(user, YYYYMMDD)
     elif loadDiaryTask == 2:

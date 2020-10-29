@@ -8,6 +8,22 @@ menuList = {
     "일지 분석":["메인 메뉴로 이동","영양 정보 분석","유해 식품 검사"],
     "영양정보 분석":["일지 분석으로 이동","오늘 일지 분석", "날짜 지정해서 분석"]
 }
+
+def loadDairySelect(menuName):
+    while True:
+        try:
+            print("[" + menuName + "]")
+            for i in range(len(menuList[menuName])):
+                print(i, ".", menuList[menuName][i])
+            raw = int(input("입력 > "))
+            if 0 <= raw and raw <= 2:
+                return raw
+            else:
+                print("0이상 2이하의 숫자로 입력해주세요.")    
+        except ValueError:
+            print("0이상 2이하의 숫자로 입력해주세요.")
+            continue
+
 def MenuSelect(menuName):
     print("[" + menuName + "]")
     for i in range(len(menuList[menuName])):
