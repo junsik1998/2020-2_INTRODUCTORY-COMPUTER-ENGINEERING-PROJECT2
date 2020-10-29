@@ -50,6 +50,7 @@ def writeDiary(user):
         productList = loadProductList(user, today)
         f = open(productFile, "a", encoding='utf-8')
     else:
+        productList = list()
         f = open(productFile, "w", encoding='utf-8')
 
     print("오늘 섭취한 제품명들을 하나씩 Enter키로 구분하여 입력해주세요. 입력을 완료했으면 빈 문자열인 상태로 한번 더 Enter키를 누르세요.")
