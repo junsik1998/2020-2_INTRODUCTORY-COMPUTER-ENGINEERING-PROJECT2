@@ -101,6 +101,3 @@ def mk_food():
     except requests.exceptions.ConnectionError :
         print("API 호출 error 발생으로 식품영양정보 업데이트를 실패하였습니다.")
         print("통신 오류입니다. 네트워크를 확인하십시오. ")
-    except json.decoder.JSONDecodeError as msg:
-        print("API 호출 error 발생으로 식품영양정보 업데이트를 실패하였습니다.\n")
-        print("jsondecode에러입니다. 인증키를 공유해서 사용하고있는지 확인하십시오.\n")
