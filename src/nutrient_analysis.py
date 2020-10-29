@@ -312,32 +312,29 @@ def harmfulFood(user):
     index=1
     select='1'
     print("0. 상위 메뉴로 이동")
-    if(len(harmful_foods)==0):
-        print('섭취한 유해식품이 없습니다.')
 
-    else:
-        for harm in harmful_foods:
-            print(str(index)+'. '+harm[1],harm[0])
-            index=index+1
+    for harm in harmful_foods:
+        print(str(index)+'. '+harm[1],harm[0])
+        index=index+1
+    print()
+    while(select!='0'):
+        print('(숫자 ‘0’을 입력할 경우 메인 메뉴의 3. 식품 섭취 일지 분석하기로 이동)')
+        select=input('자세히 알고 싶은 유해식품 index 입력>')
+        if(not select.isdigit() or 0>int(select) or int(select)>=index):
+            print('잘못된 형식으로 입력하였습니다.\n')
+            continue
+        elif(select=='0'):
+            print()
+            break
+        #select된 index에 대한 자세한 정보 보여주기
         print()
-        while(select!='0'):
-            print('(숫자 ‘0’을 입력할 경우 메인 메뉴의 3. 식품 섭취 일지 분석하기로 이동)')
-            select=input('자세히 알고 싶은 유해식품 index 입력>')
-            if(not select.isdigit() or 0>int(select) or int(select)>=index):
-                print('잘못된 형식으로 입력하였습니다.\n')
-                continue
-            elif(select=='0'):
-                print()
-                break
-            #select된 index에 대한 자세한 정보 보여주기
-            print()
-            print(harmful_foods[int(select)-1][0])
-            print('섭취날짜:',(harmful_foods[int(select)-1][1]))
-            print('회수 정보:',harmful_foods[int(select)-1][2][1])
-            print('제조 업체 명:',harmful_foods[int(select)-1][2][2])
-            print('업체 주소:',harmful_foods[int(select)-1][2][3])
-            print()
-        harmful_foods.clear()
+        print(harmful_foods[int(select)-1][0])
+        print('섭취날짜:',(harmful_foods[int(select)-1][1]))
+        print('회수 정보:',harmful_foods[int(select)-1][2][1])
+        print('제조 업체 명:',harmful_foods[int(select)-1][2][2])
+        print('업체 주소:',harmful_foods[int(select)-1][2][3])
+        print()
+    harmful_foods.clear()
     
 
 
