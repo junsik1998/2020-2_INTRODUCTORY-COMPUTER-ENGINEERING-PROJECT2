@@ -42,38 +42,41 @@ def loadBadProducts():
 
 
 if __name__ == "__main__":
-    mk_food()
-    mk_badfood()
-    loadFood()
-    loadBadProducts()
-    searchInit(foods, products)
+    check_network = mk_food()
+    if check_network == 1:
+        mk_badfood()
+        loadFood()
+        loadBadProducts()
+        searchInit(foods, products)
 
-    while user==None:
-        task = MenuSelect("시작 메뉴")
-        if task == "1":
-            signUp()
-        elif task == "2":
-            user = login()
-        elif task == "0":
-            break
-        else:
-            print("존재하지 않는 메뉴를 선택했습니다. 다시 입력해주세요.")
+        while user==None:
+            task = MenuSelect("시작 메뉴")
+            if task == "1":
+                signUp()
+            elif task == "2":
+                user = login()
+            elif task == "0":
+                break
+            else:
+                print("존재하지 않는 메뉴를 선택했습니다. 다시 입력해주세요.")
 
-    while user!=None:
-        menu = MenuSelect("메인 메뉴")
-        if menu == "0":
-            print("프로그램을 종료합니다.")
-            break
-        elif menu == "1":
-            writeDiary(user)
-        elif menu == "2":
-            YYYYMMDD = loadDiary(user)
-            if YYYYMMDD is not None:
-                # 일지 불러오기 프롬프트
-                loadDiaryPrompt(user, YYYYMMDD)
-        elif menu == "3":
-            diary_analysis(user)
-        elif menu == "4":
-            badProductSearch()
-        else:
-            print("잘못 입력하셨습니다.")
+        while user!=None:
+            menu = MenuSelect("메인 메뉴")
+            if menu == "0":
+                print("프로그램을 종료합니다.")
+                break
+            elif menu == "1":
+                writeDiary(user)
+            elif menu == "2":
+                YYYYMMDD = loadDiary(user)
+                if YYYYMMDD is not None:
+                    # 일지 불러오기 프롬프트
+                    loadDiaryPrompt(user, YYYYMMDD)
+            elif menu == "3":
+                diary_analysis(user)
+            elif menu == "4":
+                badProductSearch()
+            else:
+                print("잘못 입력하셨습니다.")
+    else:
+        pass
