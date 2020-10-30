@@ -96,6 +96,8 @@ def mk_food():
                 f.close()
                 make_db(total_count)
                 print("식품영양정보 파일 업데이트를 완료했습니다")
+        return 1
     except requests.exceptions:
         print("API 호출 error 발생으로 식품영양정보 업데이트를 실패하였습니다.")
         print("통신 오류입니다. 네트워크를 확인하십시오. ")
+        return 0
