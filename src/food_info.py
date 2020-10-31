@@ -69,28 +69,23 @@ def make_db(total):
 
 def mk_food():
     try:
-        key ="40afbe2975a0467d837e"
-        url = "http://openapi.foodsafetykorea.go.kr/api/{}/I2790/json/{}/{}".format(key,1,1)
-        res = requests.get(url).json()
         check_food = os.path.isfile(food_info_path+food_info_name)
-
-        if check_food == False:
-
+        if check_food == True:
+            pass
+        else:
+            key ="40afbe2975a0467d837e"
+            url = "http://openapi.foodsafetykorea.go.kr/api/{}/I2790/json/{}/{}".format(key,1,1)
+            res = requests.get(url).json()
             print("식품영양정보 파일을 생성합니다.")
             f = open(food_info_path+food_info_name,'w',encoding="utf-8")
             f.write("0")
             f.close()
 
-        if res['I2790']['RESULT']['CODE'] != 'INFO-000':
-            print("API 호출 error 발생으로 식품영양정보 업데이트를 실패하였습니다.")
-            print(res['I2790']['RESULT']['MSG'])
-
-        else:
-            total_count = int(res['I2790']["total_count"])
-            f = open(food_info_path+food_info_name,'r',encoding="utf-8")
-            check_num = int(f.readline())
-            f.close()
-            if total_count != check_num:
+            if res['I2790']['RESULT']['CODE'] != 'INFO-000':
+                print("API 호출 error 발생으로 식품영양정보 업데이트를 실패하였습니다.")
+                print(res['I2790']['RESULT']['MSG'])
+            else:
+                total_count = int(res['I2790']["total_count"])
                 f = open(food_info_path+food_info_name,'w',encoding="utf-8")
                 f.write(str(total_count)+"\n")
                 f.close()
