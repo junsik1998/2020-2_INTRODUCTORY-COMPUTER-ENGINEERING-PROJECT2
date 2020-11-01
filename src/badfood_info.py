@@ -6,6 +6,12 @@ badfood_info_name = "유해식품정보.txt"
 
 def mk_badfood():
     try:
+        check_badfood = os.path.isfile(badfood_info_path+badfood_info_name)
+        if check_badfood == False:
+            print("유해식품정보 파일을 생성합니다.")
+            f = open(badfood_info_path+badfood_info_name,'w',encoding="utf-8")
+            f.write("0")
+            f.close()
         key = "40afbe2975a0467d837e"
         url = "http://openapi.foodsafetykorea.go.kr/api/{}/I0490/json/1/1".format(key)
         res_post = requests.post(url)
@@ -17,14 +23,7 @@ def mk_badfood():
             print(key_error,end = '')
         else:
             res = requests.get(url).json()
-
-            check_badfood = os.path.isfile(badfood_info_path+badfood_info_name)
-            if check_badfood == False:
-                print("유해식품정보 파일을 생성합니다.")
-                f = open(badfood_info_path+badfood_info_name,'w',encoding="utf-8")
-                f.write("0")
-                f.close()
-
+            
             if res['I0490']['RESULT']['CODE'] != 'INFO-000':
                 print("API 호출 error 발생으로 유해식품정보 업데이트를 실패하였습니다.")
                 print(res['I0490']['RESULT']['MSG'])
