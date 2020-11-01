@@ -1,3 +1,4 @@
+import pip
 from diary import *
 from input import *
 from loadDiary import loadDiaryPrompt
@@ -5,8 +6,6 @@ from login import *
 from nutrient_analysis import *
 from menu import *
 from search import badProductSearch, searchInit
-from food_info import *
-from badfood_info import *
 
 user = None
 task = None
@@ -20,6 +19,11 @@ products = []
 product_name_index = 0
 product_barcode_index = 1
 
+def install(package):
+    if hasattr(pip, 'main'):
+        pip.main(['install', package])
+    else:
+        pip._internal.main(['install', package])
 
 def loadFood():
     food_file = open("./식품영양정보.txt", "r", encoding="utf-8")
@@ -42,6 +46,14 @@ def loadBadProducts():
 
 
 if __name__ == "__main__":
+    try:
+        import requests
+    except ModuleNotFoundError:
+        install('requests')
+    finally:
+        from food_info import *
+        from badfood_info import *
+    
     check_network = mk_food()
     if check_network == 1:
         mk_badfood()
